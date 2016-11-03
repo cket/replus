@@ -12,9 +12,12 @@ var comments = document.getElementsByClassName("review-comment js-comment js-tas
 // add button to action bar iff child of review comment
 var actionBars = document.getElementsByClassName("timeline-comment-actions");
 var needsCheckBox = [];
-for (j = 0; i < actionBars; j++){
-	if(actionBars[i].parentNode.parentNode.class == "review-comment js-comment js-task-list-container commit-comment member-comment  previewable-edit  js-reorderable-task-lists reorderable-task-lists"){
-		needsCheckBox.push(actionBars[i]);
+for (j = 0; j < actionBars.length; j++){
+	console.log(actionBars[j]);
+	console.log(actionBars[j].parentNode);
+	console.log(actionBars[j].parentNode.parentNode);
+	if(actionBars[j].parentNode.parentNode.class == "comment previewable-edit timeline-comment js-comment js-task-list-container member-comment  js-reorderable-task-lists reorderable-task-lists"){
+		needsCheckBox.push(actionBars[j]);
 	}
 }
 var needListeners = document.getElementsByClassName("file js-comment-container has-inline-notes");
