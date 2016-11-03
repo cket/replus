@@ -9,6 +9,14 @@
 
 console.log('Script execution');
 var comments = document.getElementsByClassName("review-comment js-comment js-task-list-container commit-comment member-comment  previewable-edit  js-reorderable-task-lists reorderable-task-lists");
+// add button to action bar iff child of review comment
+var actionBars = document.getElementsByClassName("timeline-comment-actions");
+var needsCheckBox = [];
+for (j = 0; i < actionBars; j++){
+	if(actionBars[i].parentNode.parentNode.class == "review-comment js-comment js-task-list-container commit-comment member-comment  previewable-edit  js-reorderable-task-lists reorderable-task-lists"){
+		needsCheckBox.push(actionBars[i]);
+	}
+}
 var needListeners = document.getElementsByClassName("file js-comment-container has-inline-notes");
 if(typeof comments == 'undefined'){
 	// javascipt has no exit? 
@@ -18,14 +26,14 @@ var main_review = needListeners[0];
 
 main_review.addEventListener('click', markResolved, true);
 
-for (i = 0; i < comments.length; i++){
+for (i = 0; i < needsCheckBox.length; i++){
 	var checkbox = document.createElement('input');
 	checkbox.type = "checkbox";
 	checkbox.name = "resolved";
 	checkbox.value = "value";
 	checkbox.id = 'cjk'.concat(String(i));
 	// check storage to see if this was clicked before page was reloaded 
-	comments[i].appendChild(checkbox);
+	needsCheckBox[i].appendChild(checkbox);
 };
 function markResolved(event){
 	var checkbox = document.getElementById(event.target.id);
