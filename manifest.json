@@ -6,12 +6,14 @@
     "activeTab",
     "storage"
   ],
-  "background": {
-    "scripts": ["background.js"],
-    "persistent": false
-  },
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*"],
+      "js": ["myscript.js"]
+    }
+  ],
   "browser_action": {
-    "default_title": "Make this page red"
+    "default_title": "Are all the comments resolved?"
   },
   "manifest_version": 2
 }
