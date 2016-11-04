@@ -8,8 +8,8 @@
 // "review-comment-contents"
 
 console.log('Script execution');
-var comments = document.getElementsByClassName("review-comment js-comment js-task-list-container commit-comment member-comment  previewable-edit  js-reorderable-task-lists reorderable-task-lists");
-var needListeners = document.getElementsByClassName("file js-comment-container has-inline-notes");
+var comments = document.getElementsByClassName("review-comment js-comment js-task-list-container commit-comment  previewable-edit  ");
+var needListeners = document.getElementsByClassName("timeline-comment-wrapper discussion-item-review mt-0 is-rejected is-writer");
 if(typeof comments == 'undefined'){
 	// javascipt has no exit? 
 	throw new Error();
