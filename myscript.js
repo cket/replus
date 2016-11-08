@@ -14,9 +14,10 @@ if(typeof comments == 'undefined'){
 	// javascipt has no exit? 
 	throw new Error();
 }
-var main_review = needListeners[0];
-
-main_review.addEventListener('click', markResolved, true);
+for(i = 0; i < needListeners.length; i++){
+	var main_review = needListeners[i];
+	main_review.addEventListener('click', markResolved, true);
+}
 
 for (i = 0; i < comments.length; i++){
 	var checkbox = document.createElement('input');
