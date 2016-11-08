@@ -30,6 +30,9 @@ for (i = 0; i < comments.length; i++){
 };
 function markResolved(event){
 	var checkbox = document.getElementById(event.target.id);
+	if(typeof checkbox == 'undefined' || checkbox.type != "checkbox"){
+		return;
+	}
 	var target = checkbox.parentNode;
 	// careful not to clash with built in 'checked'
 	if(typeof checkbox.is_checked == 'undefined'){
