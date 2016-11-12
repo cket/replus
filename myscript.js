@@ -24,11 +24,13 @@ for (i = 0; i < comments.length; i++){
 	checkbox.type = "checkbox";
 	checkbox.name = "resolved";
 	checkbox.value = "value";
-	var id_value =  'cjk'.concat(String(i));
+	//create unique id based on the parent id
+	var id_value =  comments[i].id.concat('cjk');
+	console.log(id_value);
 	checkbox.id = id_value;
 	var is_checked;
 	chrome.storage.local.get(id_value, function(result){ 
-		console.log(JSON.stringify(result)); // figure out how to delete from storage..	
+		console.log(JSON.stringify(result)); 
 		is_checked = result[this]; 
 		console.log(is_checked);
 		if(is_checked==true){
@@ -61,7 +63,6 @@ function _check(checkbox, id){
 	var key = String(id);
 	console.log(key);
 	if(checkbox.is_checked != true){
-		console.log('True');
 		target.style.color = "blue";
 		checkbox.is_checked = true;
 		var obj = {};
@@ -70,7 +71,6 @@ function _check(checkbox, id){
 			console.log('saved');
 		});
 	} else {
-		console.log('False');
 		target.style.color = "black";
 		checkbox.is_checked = false;
 		var obj = {};
