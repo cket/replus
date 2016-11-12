@@ -10,6 +10,7 @@
 console.log('Script execution');
 var comments = document.getElementsByClassName("review-comment js-comment js-task-list-container commit-comment  previewable-edit  ");
 var needListeners = document.getElementsByClassName("timeline-comment-wrapper discussion-item-review mt-0 is-rejected is-writer");
+var numberChecked = 0;
 if(typeof comments == 'undefined'){
 	// javascipt has no exit? 
 	throw new Error();
@@ -51,6 +52,7 @@ function markResolved(event){
 }
 
 function _check(checkbox, id){
+	
 	if(typeof checkbox == 'undefined' || checkbox.type != "checkbox"){
 		return;
 	}
@@ -63,6 +65,7 @@ function _check(checkbox, id){
 	var key = String(id);
 	console.log(key);
 	if(checkbox.is_checked != true){
+		numberChecked ++;
 		target.style.color = "blue";
 		checkbox.is_checked = true;
 		var obj = {};
@@ -72,6 +75,7 @@ function _check(checkbox, id){
 		});
 	} else {
 		target.style.color = "black";
+		numberChecked --;
 		checkbox.is_checked = false;
 		var obj = {};
 		obj[key] = false;
@@ -80,3 +84,18 @@ function _check(checkbox, id){
 		});
 	}
 }
+
+// Listen for messages
+chrome.runtime.onMessage.addListener( function(request, sender, sendResponse) {
+	console.log('Browser action');
+    if (request.greeting == "numberChecked"){
+    	var numComments = String(comments.length);
+    	console.log('resolved comments: '+String(numberChecked));
+    	console.log('total comments: '+numComments);
+    	var obj = {};
+		obj['total'] = numComments;
+		obj['resolved'] = numberChecked;
+        sendResponse(obj);
+    }
+});
+

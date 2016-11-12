@@ -13,25 +13,16 @@
         font-size: 100%;
       }
       #status {
-        /* avoid an excessively wide status text */
         white-space: pre;
         text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
+        /*  overflow: hidden;*/
+        /*max-width: 700px;*/
       }
     </style>
-
-    <!--
-      - JavaScript and HTML must be in separate files: see our Content Security
-      - Policy documentation[1] for details and explanation.
-      -
-      - [1]: https://developer.chrome.com/extensions/contentSecurityPolicy
-     -->
     <script src="popup.js"></script>
   </head>
   <body>
     <div id="status"></div>
-    <img id="image-result" hidden>
   </body>
 </html>
 
