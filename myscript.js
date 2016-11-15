@@ -13,18 +13,19 @@
 // limitations under the License.
 
 console.log('Script execution');
-var comments = document.getElementsByClassName("review-comment js-comment js-task-list-container commit-comment  previewable-edit  ");
+var comments = document.getElementsByClassName("review-comment js-comment js-task-list-container commit-comment  previewable-edit ");
+//add listers for rejecting reviews
 var needListeners = document.getElementsByClassName("timeline-comment-wrapper discussion-item-review mt-0 is-rejected is-writer");
+addListeners(needListeners);
+//add listers for reviews that don't explicitly reject the PR
+var needListeners = document.getElementsByClassName("timeline-comment-wrapper discussion-item-review mt-0 is-writer");
+addListeners(needListeners);
+
 var numberChecked = 0;
 if(typeof comments == 'undefined'){
 	// javascipt has no exit? 
 	throw new Error();
 }
-for(i = 0; i < needListeners.length; i++){
-	var main_review = needListeners[i];
-	main_review.addEventListener('click', markResolved, true);
-}
-
 for (i = 0; i < comments.length; i++){
 	var checkbox = document.createElement('input');
 	checkbox.type = "checkbox";
@@ -50,6 +51,13 @@ for (i = 0; i < comments.length; i++){
 	}.bind(id_value));
 	comments[i].appendChild(checkbox);
 };
+
+function addListeners(elemArray){
+	for(i = 0; i < elemArray.length; i++){
+		var main_review = elemArray[i];
+		main_review.addEventListener('click', markResolved, true);
+	}
+}
 
 function markResolved(event){
 	var checkbox = document.getElementById(event.target.id);
