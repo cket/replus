@@ -24,7 +24,7 @@
     }
   ],
   "browser_action": {
-    "default_title": "Are all the comments resolved?",
+    "default_title": "Replus - PR Review Summary",
     "default_popup": "popup.html",
     "default_icon": "gitIcon.png"
   },

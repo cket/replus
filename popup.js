@@ -13,7 +13,12 @@
 // limitations under the License.
 
 function renderStatus(response) {
-  var total = "There are "  + response.total + " comments, "
+  var total = '';
+  if(response.total == '1'){
+    total = "There is "  + response.total + " comment, ";
+  } else { 
+    total = "There are "  + response.total + " comments, ";
+  }
   var resolved = '';
   if(response.resolved == '1'){
     resolved =  response.resolved + " of which has been resolved.";
